@@ -1,0 +1,8 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "eslint.nodePath": "node_modules",
+    "node": {
+      "path": "/path/to/node-v20.11.0/bin/node"
+    },
+    "terminal.integrated.shellArgs.linux": ["-l"]
+}

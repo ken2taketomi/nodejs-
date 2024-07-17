@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>User list</title>
-    
+    <link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <table>
@@ -15,30 +15,15 @@
         </tr>
     </table>
     <!--こちらに基礎課題で言われてる内容を記述しましょう。ここから-->
-    <p id="textTag1"></p>
-    <p id="textTag2"></p>
-    <ul id="arrayList"></ul>
+    <p id="textTag"></p>
 
     <!--こちらに基礎課題で言われてる内容を記述しましょう。ここまで-->
     <script type="text/javascript">
 
         // 参考例
-        let textTag1 = document.getElementById('textTag1');
-        let NUMBER = `<%= number %>`;
-        textTag1.innerHTML = NUMBER;
-
-        // 基礎課題01:文字列を画面に出力
-        let STRING = `<%= string %>`;
-        let textTag2 = document.getElementById('textTag2');
-        textTag2.innerHTML = STRING;
-
-        // 基礎課題02:リストを画面表示
-        let arrayList = document.getElementById('arrayList');
-        let ARRAY = JSON.parse('<%= JSON.stringify(array) %>'.replace(/&#34;/g, '"')); //配列と連想配列を使用する時、この変換の記述が必要
-        for (let i=0; i<ARRAY.length; i++) {
-          let li = `<li>${ARRAY[i]}</li>`;
-          arrayList.insertAdjacentHTML('beforeend', li);
-        }
+        // let textTag1 = document.getElementById('textTag1');
+        // let NUMBER = `<%= number %>`;
+        // textTag1.innerHTML = NUMBER;
 
         // ここからはapp.jsで作成した値をここでブラウザに出力するように機能を実装していきましょう。上記の参考例を元にやってみましょう。
         // 基礎課題01:画面に表示する機能作りましょう。

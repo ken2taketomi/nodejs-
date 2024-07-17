@@ -8,7 +8,6 @@ app.set('view engine', 'ejs');
 
 const mysql = require('mysql2');
 
-// mysqlをここで読み取っている
 const con = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -18,11 +17,13 @@ const con = mysql.createConnection({
 
 // mysqlからデータを持ってくる
 app.get('/', (req, res) => {
+  // cssファイルの取得
+  app.use(express.static('assets'));
+  
   const sql = "select * from users";
   // 参考例
   const num = 10000;
-  const str = "文字列";
-  const arr = ["リンゴ", "オレンジ", "イチゴ", "バナナ", "桃"];
+  
   // 基礎課題項目
   /* ==========従来通りJavaScriptの要領で書いてください。==========
     ここで記載する内容はブラウザに出力するための情報のみになります。上記参考例のconst num = 10000;のように
@@ -53,9 +54,7 @@ app.get('/', (req, res) => {
         指定の仕方はオブジェクトの考え方と同じで、プロパティ名: 値の形になります。値の部分は変数名を入れるようにして下さい。
         プロパティ名はindex.ejsで使用しますので、何の値が入ってるかわかるような名前にしましょう。
       */
-      number: num,
-      string: str,
-      array: arr
+      number: num
     });
   });
 });

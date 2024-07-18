@@ -1,10 +1,12 @@
 const path = require('path');
 const express = require('express');
+const bodyParser = require('body-parser'); // body-parserを追加
 const ejs = require('ejs');
 const app = express();
 const port = 3000;
 
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true })); // body-parserの設定を追加
 
 const mysql = require('mysql2');
 

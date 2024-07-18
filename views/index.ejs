@@ -28,7 +28,6 @@
   <script type="text/javascript">
     //DBに格納しているオブジェクトリストを変数(userList)に格納
     let userList = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
-    console.log(userList);
 
     let btn = document.getElementById('btn');
     btn.addEventListener('click', function(){

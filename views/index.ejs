@@ -6,41 +6,53 @@
     <link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <table>
-        <tr>
-            <th>名前</th>
-            <th>email</th>
-            <th>更新</th>
-            <th>削除</th>
-        </tr>
-    </table>
-    <!--こちらに基礎課題で言われてる内容を記述しましょう。ここから-->
-    <p id="textTag"></p>
+  <div class="mb-10">
+    <div>idを入力して、ボタンを押すとDBの情報を表示できます。</div>
+    <input id="textBox" type="text">
+    <button id="btn">出力</button>
+    <div id="errorMsg"></div>
+  </div>
+  <table>
+      <tr>
+          <th>名前</th>
+          <th>email</th>
+          <th>更新</th>
+          <th>削除</th>
+      </tr>
+  </table>
 
-    <!--こちらに基礎課題で言われてる内容を記述しましょう。ここまで-->
-    <script type="text/javascript">
+  <!--こちらに基礎課題で言われてる内容を記述しましょう。ここから-->
+  <p id="textTag"></p>
+  <!--こちらに基礎課題で言われてる内容を記述しましょう。ここまで-->
 
-        // 参考例
-        // let textTag1 = document.getElementById('textTag1');
-        // let NUMBER = `<%= number %>`;
-        // textTag1.innerHTML = NUMBER;
+  <script type="text/javascript">
+    //DBに格納しているオブジェクトリストを変数(userList)に格納
+    let userList = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
+    console.log(userList);
 
-        // ここからはapp.jsで作成した値をここでブラウザに出力するように機能を実装していきましょう。上記の参考例を元にやってみましょう。
-        // 基礎課題01:画面に表示する機能作りましょう。
-        /*
-        基礎課題02,03をやる前に
-        配列とオブジェクトリストをapp.jsから取得するときに以下のやり方が必要になります。
-        変数名は自由に決めてください。プロパティ名についてはapp.jsでオブジェクト内に格納したプロパティ名を使用してください。
-        以下使用する際は<%#の「#」部分を「=」に変更するよう気をつけてください。%>
-        let 変数名 = JSON.parse('<%# JSON.stringify(プロパティ名) %>'.replace(/&#34;/g, '"'));
-        */
+    let btn = document.getElementById('btn');
+    btn.addEventListener('click', function(){
+      let inputValue = document.getElementById('textBox').value;
+      const tbody = document.querySelector('table tbody');
+      const errorMsg = document.getElementById('errorMsg');
+      
+      //入力した値と、DBのidが合致したら、その情報を表示させる
+      for (let i=0; i<userList.length; i++){
+        if (userList[i].id == inputValue) {
+          let tr = `<tr>
+                      <td>${userList[i].name}</td>
+                      <td>${userList[i].email}</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                    </tr>`;
+          tbody.insertAdjacentHTML('beforeend', tr);
+          return;
+        } else {
+          errorMsg.textContent = '入力したidは存在しません';
+        }
+      }
 
-        // 基礎課題02:HTML内にulタグを作成し、liタグでapp.jsで作成した情報を画面に表示して下さい。
-
-        // 基礎課題03:作成したオブジェクトリストをブラウザに出力して下さい。その場合以下の様に出力して下さい。
-        // 例）
-        // name: s.chiba
-        // email: s.chiba@gmail.com
-    </script>
+    });
+  </script>
 </body>
 </html>

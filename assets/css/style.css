@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+.mb-10 {
+  margin-bottom: 15px;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -10,4 +14,7 @@ table tr th,
 table tr td {
   border: solid #ccc 1px;
   padding: .2em .5em;
+}
+#errorMsg {
+  color: red;
 }

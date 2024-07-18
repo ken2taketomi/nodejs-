@@ -29,29 +29,38 @@
     //DBに格納しているオブジェクトリストを変数(userList)に格納
     let userList = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
 
+    //入力した値と、DBのidが合致したら、その情報を表示させる
     let btn = document.getElementById('btn');
-    btn.addEventListener('click', function(){
+    // btn.addEventListener('click', function(){
       let inputValue = document.getElementById('textBox').value;
       const tbody = document.querySelector('table tbody');
       const errorMsg = document.getElementById('errorMsg');
       
-      //入力した値と、DBのidが合致したら、その情報を表示させる
       for (let i=0; i<userList.length; i++){
-        if (userList[i].id == inputValue) {
-          let tr = `<tr>
+        let id = userList[i].id;
+        let tr = `<tr>
                       <td>${userList[i].name}</td>
                       <td>${userList[i].email}</td>
-                      <td>&nbsp;</td>
-                      <td>&nbsp;</td>
+                      <td><a href="/edit/${ id }">更新</a></td>
+                      <td><a href="/delete/${ id }">削除</a></td>
                     </tr>`;
-          tbody.insertAdjacentHTML('beforeend', tr);
-          return;
-        } else {
-          errorMsg.textContent = '入力したidは存在しません';
-        }
+        tbody.insertAdjacentHTML('beforeend', tr);
+
+        // if (ID == inputValue) {
+        //   let tr = `<tr>
+        //               <td>${userList[i].name}</td>
+        //               <td>${userList[i].email}</td>
+        //               <td><a href="/edit/${ ID }">更新</a></td>
+        //               <td><a href="/delete/${ ID }">削除</a></td>
+        //             </tr>`;
+        //   tbody.insertAdjacentHTML('beforeend', tr);
+        //   return;
+        // } else {
+        //   errorMsg.textContent = '入力したidは存在しません';
+        // }
       }
 
-    });
+    // });
   </script>
 </body>
 </html>

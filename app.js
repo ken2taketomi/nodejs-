@@ -1,12 +1,12 @@
 const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser'); // body-parserを追加
+const bodyParser = require('body-parser'); // 【express】body-parserを追加
 const ejs = require('ejs');
 const app = express();
 const port = 3000;
 
 app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({ extended: true })); // body-parserの設定を追加
+app.use(bodyParser.urlencoded({ extended: true })); // 【express】body-parserの設定を追加
 
 const mysql = require('mysql2');
 
@@ -63,3 +63,16 @@ app.get('/delete/:id', (req, res) => {
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+//新規ユーザーの追加
+app.post('/', (req, res) => {
+  const sql = "INSERT INTO users SET ?";
+  con.query(sql, req.body, function(err, result, fields) {
+    if(err) throw err;
+    console.log(result);
+    res.redirect('/');
+  });
+});
+app.get('/create', (req, res) => {
+  res.sendFile(path.join(__dirname, 'html/form.html'))
+})

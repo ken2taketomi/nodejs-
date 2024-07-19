@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>入力フォーム</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>入力フォーム</h1>
+  <form action="/" method="POST">
+    <p>
+      <input type="text" name="name" placeholder="お名前を入力してください" pattern="^[a-zA-Z.]+$" required>
+    </p>
+    <p>
+      <input type="email" name="email" placeholder="メールアドレスを入力してください" required>
+    </p>
+    <button type="submit">送信</button>
+  </form>
+</body>
+</html>
